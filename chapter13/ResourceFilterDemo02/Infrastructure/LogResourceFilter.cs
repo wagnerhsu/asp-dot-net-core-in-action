@@ -1,16 +1,20 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NLog;
+using Microsoft.Extensions.Logging;
 
 namespace ResourceFilterDemo01.Infrastructure
 {
     public class LogResourceFilter : Attribute, IResourceFilter
     {
-        ILogger _logger = LogManager.GetCurrentClassLogger();
+        ILogger<LogResourceFilter> _logger;
+        public LogResourceFilter(ILogger<LogResourceFilter> logger)
+        {
+            _logger = logger;
+        }
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
-            _logger.Debug("Executing IResourceFilter.OnResourceExecuting");
+            _logger.LogDebug("Executing IResourceFilter.OnResourceExecuting");
             //context.Result = new ContentResult()
             //{
             //    Content = "IResourceFilter - Short-circuiting ",
@@ -19,7 +23,7 @@ namespace ResourceFilterDemo01.Infrastructure
 
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
-            _logger.Debug($"Executing IResourceFilter.OnResourceExecuted: cancelled {context.Canceled}");
+            _logger.LogDebug($"Executing IResourceFilter.OnResourceExecuted: cancelled {context.Canceled}");
         }
     }
 }
