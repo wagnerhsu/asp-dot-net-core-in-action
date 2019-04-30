@@ -1,3 +1,3 @@
-## 2019-03-29
-- Basic ResourceFilter demo. ÒÔGlobal·½Ê½½øĞĞ×¢²á£¬´ËÊ±¿ÉÒÔÔÚLogResourceFilterÖĞÊ¹ÓÃDI
+ï»¿## 2019-03-29
+- Basic ResourceFilter demo. ä»¥Globalæ–¹å¼è¿›è¡Œæ³¨å†Œï¼Œæ­¤æ—¶å¯ä»¥åœ¨LogResourceFilterä¸­ä½¿ç”¨DI
  
