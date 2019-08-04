@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace LifetimeExamples
@@ -18,7 +13,7 @@ namespace LifetimeExamples
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseDefaultServiceProvider(options => 
+                .UseDefaultServiceProvider(options =>
                 {
                     // set the value to true to always validate scopes,
                     // or use the alternative definition below to only

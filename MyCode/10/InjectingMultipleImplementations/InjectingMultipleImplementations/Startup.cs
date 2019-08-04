@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DependencyInjectionExample.Services;
+﻿using DependencyInjectionExample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
 
 namespace DependencyInjectionExample
 {
@@ -16,7 +11,7 @@ namespace DependencyInjectionExample
     {
         public Startup(IConfiguration config)
         {
-           Configuration = config;
+            Configuration = config;
         }
 
         public IConfiguration Configuration { get; }
@@ -25,7 +20,7 @@ namespace DependencyInjectionExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+
             services.AddScoped<IMessageSender, EmailSender>();
             services.AddScoped<IMessageSender, SmsSender>();
             services.AddScoped<IMessageSender, FacebookSender>();

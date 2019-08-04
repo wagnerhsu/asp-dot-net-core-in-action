@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DependencyInjectionExample.Services;
+﻿using DependencyInjectionExample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +11,7 @@ namespace DependencyInjectionExample
     {
         public Startup(IConfiguration config)
         {
-           Configuration = config;
+            Configuration = config;
         }
 
         public IConfiguration Configuration { get; }
@@ -45,7 +41,6 @@ namespace DependencyInjectionExample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
