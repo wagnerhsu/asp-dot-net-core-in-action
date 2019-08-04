@@ -9,7 +9,7 @@
     <div class="col-md-12">
         @foreach (var item in Model.ToDos)
         {
-            @Html.Partial("_ToDo", item)
+             @await Html.PartialAsync("_ToDo", item)
             <a asp-action="View" asp-route-id="@item.Id">View Task</a>
         }
     </div>

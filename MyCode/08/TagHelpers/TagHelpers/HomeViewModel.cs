@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ValidatingWithDataAnnotations
+namespace TagHelpers
 {
     public class HomeViewModel
     {
