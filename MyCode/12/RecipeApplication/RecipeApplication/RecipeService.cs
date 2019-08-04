@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Logging;
 using RecipeApplication.Data;
 using RecipeApplication.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RecipeApplication
 {
     public class RecipeService
     {
-        readonly AppDbContext _context;
-        readonly ILogger _logger;
+        private readonly AppDbContext _context;
+        private readonly ILogger _logger;
+
         public RecipeService(AppDbContext context, ILoggerFactory factory)
         {
             _context = context;
@@ -51,7 +51,6 @@ namespace RecipeApplication
                 .SingleOrDefault();
         }
 
-
         public UpdateRecipeCommand GetRecipeForUpdate(int recipeId)
         {
             return _context.Recipes
@@ -90,8 +89,8 @@ namespace RecipeApplication
         public void UpdateRecipe(UpdateRecipeCommand cmd)
         {
             var recipe = _context.Recipes.Find(cmd.Id);
-            if(recipe == null) { throw new Exception("Unable to find the recipe"); }
-            if(recipe.IsDeleted) { throw new Exception("Unable to update a deleted recipe"); }
+            if (recipe == null) { throw new Exception("Unable to find the recipe"); }
+            if (recipe.IsDeleted) { throw new Exception("Unable to update a deleted recipe"); }
 
             cmd.UpdateRecipe(recipe);
             _context.SaveChanges();
@@ -105,7 +104,7 @@ namespace RecipeApplication
         public void DeleteRecipe(int recipeId)
         {
             var recipe = _context.Recipes.Find(recipeId);
-            if(recipe.IsDeleted) { throw new Exception("Unable to delete a deleted recipe"); }
+            if (recipe.IsDeleted) { throw new Exception("Unable to delete a deleted recipe"); }
 
             recipe.IsDeleted = true;
             _context.SaveChanges();

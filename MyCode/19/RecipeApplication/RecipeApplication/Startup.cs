@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using RecipeApplication.Data;
-using RecipeApplication.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
 using RecipeApplication.Authorization;
+using RecipeApplication.Data;
+using RecipeApplication.Services;
 
 namespace RecipeApplication
 {
@@ -42,12 +37,12 @@ namespace RecipeApplication
             services.AddMvc();
             services.AddScoped<RecipeService>();
 
-            services.AddAuthorization(options => {
-                options.AddPolicy("CanManageRecipe", 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanManageRecipe",
                     policyBuilder => policyBuilder
                         .AddRequirements(new IsRecipeOwnerRequirement()));
             });
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +58,7 @@ namespace RecipeApplication
             }
 
             app.UseStaticFiles();
-            
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>

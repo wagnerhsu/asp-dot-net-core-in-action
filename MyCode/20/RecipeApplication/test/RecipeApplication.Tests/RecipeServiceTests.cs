@@ -1,9 +1,8 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RecipeApplication.Data;
 using RecipeApplication.Models;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace RecipeApplication.Tests

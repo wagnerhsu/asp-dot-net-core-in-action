@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace CustomMiddleware
 {
     public class VersionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly string _version = 
+
+        private readonly string _version =
             PlatformServices.Default.Application.ApplicationVersion;
 
         public VersionMiddleware(RequestDelegate next)
