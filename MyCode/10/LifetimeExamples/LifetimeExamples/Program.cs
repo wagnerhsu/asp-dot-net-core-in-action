@@ -18,7 +18,7 @@ namespace LifetimeExamples
                     // set the value to true to always validate scopes,
                     // or use the alternative definition below to only
                     // validate in dev environments
-                    options.ValidateScopes = false;
+                    options.ValidateScopes = true;
                 })
                 //.UseDefaultServiceProvider((ctx, options) =>
                 //{
