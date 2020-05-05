@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace SeqLogger
 {
     public class ValuesService
     {
         public readonly ILogger<ValuesService> _logger;
+
         public ValuesService(ILogger<ValuesService> logger)
         {
             _logger = logger;
         }
+
         public IEnumerable<string> GetValues()
         {
             _logger.LogInformation("Inside service, outside scope");

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System.IO;
 
 namespace LogFiltering
 {
@@ -12,16 +12,16 @@ namespace LogFiltering
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .ConfigureAppConfiguration(config => config.AddJsonFile("appsettings.json"))
-                .ConfigureLogging((ctx, builder) =>
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(builder =>
                 {
-                    builder.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-                    builder.AddConsole();
-                })
-                .UseStartup<Startup>();
+                    builder.ConfigureLogging((ctx, logging) =>
+                    {
+                        logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
+                        logging.AddConsole();
+                    });
+                    builder.UseStartup<Startup>();
+                });
     }
 }

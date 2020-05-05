@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace SeqLogger.Controllers
 {
@@ -11,6 +8,7 @@ namespace SeqLogger.Controllers
     public class ScopesController : Controller
     {
         public readonly ILogger<ScopesController> _logger;
+
         public ScopesController(ILogger<ScopesController> logger)
         {
             _logger = logger;
@@ -22,8 +20,8 @@ namespace SeqLogger.Controllers
         {
             _logger.LogInformation("No, I don’t have scope");
 
-            using(_logger.BeginScope("Scope value"))
-            using(_logger.BeginScope(new Dictionary<string, object> {{ "CustomValue1", 12345 } }))
+            using (_logger.BeginScope("Scope value"))
+            using (_logger.BeginScope(new Dictionary<string, object> { { "CustomValue1", 12345 } }))
             {
                 _logger.LogInformation("Yes, I have the scope!");
             }
