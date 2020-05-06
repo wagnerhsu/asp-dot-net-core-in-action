@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using ExchangeRates.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace ExchangeRateHelper.Test
@@ -55,7 +53,7 @@ namespace ExchangeRateHelper.Test
             {
                 // Act
                 var client = server.CreateClient();
-                
+
                 var response = await client.GetAsync("/ping");
 
                 // Assert

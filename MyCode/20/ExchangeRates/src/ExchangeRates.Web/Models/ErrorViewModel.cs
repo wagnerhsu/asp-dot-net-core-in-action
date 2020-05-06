@@ -1,5 +1,3 @@
-using System;
-
 namespace ExchangeRates.Web.Models
 {
     public class ErrorViewModel

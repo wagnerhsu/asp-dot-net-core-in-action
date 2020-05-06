@@ -1,4 +1,4 @@
-﻿using DependencyInjectionExample.Services;
+using DependencyInjectionExample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +19,7 @@ namespace DependencyInjectionExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllersWithViews();
 
             // Can also remove explicit configurations below and use extension method
             // services.AddEmailSender();
@@ -48,12 +48,13 @@ namespace DependencyInjectionExample
             }
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

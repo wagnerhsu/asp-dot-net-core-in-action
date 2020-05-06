@@ -1,7 +1,6 @@
-﻿using ExchangeRates.Web;
+using ExchangeRates.Web;
 using ExchangeRates.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace ExchangeRateHelper.Test

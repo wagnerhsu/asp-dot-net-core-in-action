@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using ExchangeRates.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace ExchangeRateHelper.Test
@@ -35,7 +30,6 @@ namespace ExchangeRateHelper.Test
 
             using (var server = new TestServer(builder))
             {
-
                 var client = server.CreateClient();
 
                 // Act
@@ -60,7 +54,6 @@ namespace ExchangeRateHelper.Test
 
             using (var server = new TestServer(builder))
             {
-
                 var client = server.CreateClient();
 
                 // Act
@@ -71,7 +64,6 @@ namespace ExchangeRateHelper.Test
 
                 Assert.Contains("<p>Enter values and click convert</p>", content);
             }
-
         }
 
         [Fact]
@@ -85,7 +77,6 @@ namespace ExchangeRateHelper.Test
 
             using (var server = new TestServer(builder))
             {
-
                 var client = server.CreateClient();
 
                 // Act
@@ -96,7 +87,6 @@ namespace ExchangeRateHelper.Test
 
                 Assert.Contains("<p>Enter values and click convert</p>", content);
             }
-
         }
 
         [Fact]

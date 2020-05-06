@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace api.shopping.com
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllersWithViews();
 
             services.AddCors(options =>
             {
@@ -44,7 +44,8 @@ namespace api.shopping.com
 
             app.UseCors("AllowShoppingApp");
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(x => x.MapDefaultControllerRoute());
         }
     }
 }

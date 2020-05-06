@@ -1,4 +1,4 @@
-﻿using Airport.Authorization;
+using Airport.Authorization;
 using Airport.Data;
 using Airport.Models;
 using Airport.Services;
@@ -35,7 +35,7 @@ namespace Airport
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            services.AddMvc();
+            services.AddControllersWithViews();
 
             services.AddAuthorization(options =>
             {
@@ -64,7 +64,7 @@ namespace Airport
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -72,14 +72,14 @@ namespace Airport
             }
 
             app.UseStaticFiles();
-
+            app.UseRouting();
             app.UseAuthentication();
-
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Airport}/{action=Index}/{id?}");
+                    pattern: "{controller=Airport}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

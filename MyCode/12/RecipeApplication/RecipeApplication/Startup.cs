@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace RecipeApplication
                     Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
-            services.AddMvc();
+            services.AddControllersWithViews();
             services.AddScoped<RecipeService>();
         }
 
@@ -45,12 +45,13 @@ namespace RecipeApplication
             }
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Recipe}/{action=Index}/{id?}");
+                    pattern: "{controller=Recipe}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

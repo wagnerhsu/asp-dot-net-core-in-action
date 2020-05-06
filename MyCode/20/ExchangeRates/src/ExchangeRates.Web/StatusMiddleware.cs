@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
 namespace ExchangeRates.Web
 {
     public class StatusMiddleware
     {
         private readonly RequestDelegate _next;
+
         public StatusMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -13,7 +14,7 @@ namespace ExchangeRates.Web
 
         public async Task Invoke(HttpContext context)
         {
-            if(context.Request.Path.StartsWithSegments("/ping"))
+            if (context.Request.Path.StartsWithSegments("/ping"))
             {
                 context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync("pong");

@@ -1,6 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ExchangeRates.Web;
 using ExchangeRates.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +19,6 @@ namespace ExchangeRateHelper.Test
 
             var viewModel = (result as ViewResult).Model;
             Assert.IsType<ConvertViewModel>(viewModel);
-
         }
 
         [Fact]

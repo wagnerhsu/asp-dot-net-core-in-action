@@ -1,7 +1,7 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using ExchangeRates.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Diagnostics;
 
 namespace ExchangeRates.Web.Controllers
 {
@@ -9,6 +9,7 @@ namespace ExchangeRates.Web.Controllers
     {
         private readonly CurrencyConverter _converter;
         private readonly CurrencySettings _settings;
+
         public HomeController(CurrencyConverter converter, IOptions<CurrencySettings> settings)
         {
             _converter = converter;

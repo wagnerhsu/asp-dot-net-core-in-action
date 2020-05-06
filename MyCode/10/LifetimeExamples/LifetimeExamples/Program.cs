@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace LifetimeExamples
 {
@@ -10,8 +10,9 @@ namespace LifetimeExamples
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(builder => builder
                 .UseStartup<Startup>()
                 .UseDefaultServiceProvider(options =>
                 {
@@ -24,6 +25,6 @@ namespace LifetimeExamples
                 //{
                 //    options.ValidateScopes = ctx.HostingEnvironment.IsDevelopment();
                 //})
-                ;
+               );
     }
 }

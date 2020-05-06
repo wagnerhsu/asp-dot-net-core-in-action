@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using ExchangeRates.Web;
 using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace ExchangeRateHelper.Test
@@ -46,7 +43,6 @@ namespace ExchangeRateHelper.Test
 
             Assert.Equal(200, context.Response.StatusCode);
         }
-
 
         [Fact]
         public async Task ForNonMatchingRequest_CallsNextDelegate()

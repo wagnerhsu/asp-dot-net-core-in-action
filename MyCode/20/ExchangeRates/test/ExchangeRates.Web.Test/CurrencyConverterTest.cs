@@ -1,5 +1,5 @@
-using System;
 using ExchangeRates.Web;
+using System;
 using Xunit;
 
 namespace ExchangeRateHelper.Test
@@ -83,6 +83,5 @@ namespace ExchangeRateHelper.Test
 
             Assert.Equal(expected, actual);
         }
-
     }
 }

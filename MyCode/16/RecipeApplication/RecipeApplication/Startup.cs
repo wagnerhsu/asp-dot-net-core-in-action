@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -35,7 +35,7 @@ namespace RecipeApplication
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Add framework services.
-            services.AddMvc();
+            services.AddControllersWithViews();
             services.AddScoped<RecipeService>();
 
             services.AddAuthorization(options =>
@@ -61,14 +61,15 @@ namespace RecipeApplication
             }
 
             app.UseStaticFiles();
-
+            app.UseRouting();
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Recipe}/{action=Index}/{id?}");
+                    pattern: "{controller=Recipe}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             //quick and dirty way of migrating a production database

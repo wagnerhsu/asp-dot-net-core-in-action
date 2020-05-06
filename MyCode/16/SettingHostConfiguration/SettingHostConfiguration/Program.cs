@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace SettingHostConfiguration
 {
@@ -17,12 +12,14 @@ namespace SettingHostConfiguration
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(GetLaunchConfiguration())
-                .UseStartup<Startup>();
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+           Host.CreateDefaultBuilder().ConfigureWebHostDefaults(x =>
+           {
+               x.UseConfiguration(GetLaunchConfiguration());
+               x.UseStartup<Startup>();
+           });
 
-        public static IConfiguration GetLaunchConfiguration() => 
+        public static IConfiguration GetLaunchConfiguration() =>
             new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("hosting.json", false, false)
