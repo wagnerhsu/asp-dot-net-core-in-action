@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace CarsWebApi
 {
@@ -10,9 +11,14 @@ namespace CarsWebApi
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IHost BuildWebHost(string[] args) =>
+            Host.CreateDefaultBuilder()
+                .ConfigureWebHostDefaults(
+                    builder =>
+                    {
+                        builder.UseStartup<Startup>();
+                    }
+                ).Build();
+
     }
 }
