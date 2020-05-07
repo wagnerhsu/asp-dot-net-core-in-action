@@ -1,8 +1,10 @@
-﻿using System;
-using System.Net.Http;
+using ExchangeRates.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Http;
 
 namespace ExchangeRateHelper.Test
 {
@@ -10,8 +12,9 @@ namespace ExchangeRateHelper.Test
     {
         public TestFixture()
         {
-            var builder = WebHost.CreateDefaultBuilder()
-                .UseStartup<TStartup>();
+            // Currently TestServer only support IWebHostBuilder
+            IWebHostBuilder builder = WebHost.CreateDefaultBuilder().UseStartup<Startup>();
+            //var builder = Host.CreateDefaultBuilder().ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<StartupBase>()).Build();
             Server = new TestServer(builder);
 
             Client = Server.CreateClient();
@@ -27,5 +30,4 @@ namespace ExchangeRateHelper.Test
             Server?.Dispose();
         }
     }
-
 }

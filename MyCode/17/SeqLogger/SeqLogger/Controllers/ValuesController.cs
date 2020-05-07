@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace SeqLogger.Controllers
 {
@@ -12,6 +9,7 @@ namespace SeqLogger.Controllers
     {
         public readonly ILogger<ValuesController> _logger;
         public readonly ValuesService _service;
+
         public ValuesController(ILogger<ValuesController> logger, ValuesService service)
         {
             _logger = logger;

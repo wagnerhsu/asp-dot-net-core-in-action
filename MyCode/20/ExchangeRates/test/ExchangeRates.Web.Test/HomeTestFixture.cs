@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Net.Http;
 using ExchangeRates.Web;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using System;
+using System.IO;
+using System.Net.Http;
 
 namespace ExchangeRateHelper.Test
 {
@@ -34,5 +33,4 @@ namespace ExchangeRateHelper.Test
             Server?.Dispose();
         }
     }
-
 }
